@@ -1,0 +1,62 @@
+.TH man 1 "SEP 20 2023" "1.0" "ALX Simple Shell Project"
+
+.SH NAME
+    simple_shell - Command line interpreter
+
+.SH SYNOPSIS
+simple_shell [filename]
+
+.SH COPYRIGHT
+    Public Domain, no copyright
+
+.SH DESCRIPTION
+.B hsh
+is a basic shell for Ubuntu 14.04 LTS.
+.PP
+.B hsh
+runs interactively and noninteractively.
+
+.SH USER INPUT
+1. Splits command into words.
+2. Searches and executes command.
+
+.SH SEARCH FOR COMMAND
+1. Looks for built-in commands.
+2. Searches in PATH if not found.
+
+.SH EXECUTE COMMAND
+Commands run in a subprocess.
+
+.SH BUILTINS
+.IP help
+Display shell help.
+.IP exit
+Exit and free memory.
+.IP cd
+Change directories.
+
+.SH EXAMPLES
+Interactive mode:
+
+.RS +4
+$ ./hsh
+...
+.RE
+.RS +4
+($) /bin/ls
+...
+.RE
+.RS +4
+($)
+...
+.RE
+
+.SH BUGS
+None known.
+
+.SH AUTHORS
+Getayawkal Wondimagegnehu - https://github.com/Xtremehonor
+
+.SH SEE ALSO
+.BR man
+.BR sh
