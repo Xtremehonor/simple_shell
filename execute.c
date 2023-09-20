@@ -7,7 +7,8 @@ int handle_ctrl_d(char **args);
 
 char *builtin_commands[] = {"cd", "help", "exit", "^D"};
 
-int (*builtin_functions[]) (char **) = {&change_directory, &display_help, &exit_shell, &handle_ctrl_d};
+int (*builtin_functions[]) (char **) = {&change_directory, 
+                                        &display_help, &exit_shell, &handle_ctrl_d};
 
 /**
  * count_builtin_commands - Returns the number of built-in commands.
