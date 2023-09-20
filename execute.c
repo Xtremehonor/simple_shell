@@ -98,34 +98,34 @@ int handle_ctrl_d(char **args)
  */
 int fork_and_execute(char **command_tokens, char **program_name, char **environment, char *user_input, int process_id, int new_test_checker)
 {
-    pid_t child;
-    int status, i = 0;
-    char *format = "%s: %d: %s: command not found\n";
+pid_t child;
+int status, i = 0;
+char *format = "%s: %d: %s: command not found\n";
 
-    if (command_tokens[0] == NULL)
-        return (1);
-    for (i = 0; i < count_builtin_commands(); i++)
-    {
-        if (string_compare(command_tokens[0], builtin_commands[i]) == 0)
-            return (builtin_functions[i](command_tokens));
-    }
-    child = fork();
-    if (child == 0)
-    {
-        if (execve(command_tokens[0], command_tokens, environment) == -1)
-        {
-            fprintf(stderr, format, program_name[0], process_id, command_tokens[0]);
-            if (!new_test_checker)
-                free(command_tokens[0]);
-            free(command_tokens);
-            free(user_input);
-            exit(errno);
+if (command_tokens[0] == NULL)
+    return (1);
+for (i = 0; i < count_builtin_commands(); i++)
+{
+    if (string_compare(command_tokens[0], builtin_commands[i]) == 0)
+    return (builtin_functions[i](command_tokens));
+}
+child = fork();
+if (child == 0)
+{
+if (execve(command_tokens[0], command_tokens, environment) == -1)
+{
+fprintf(stderr, format, program_name[0], process_id, command_tokens[0]);
+    if (!new_test_checker)
+        free(command_tokens[0]);
+    free(command_tokens);
+    free(user_input);
+    exit(errno);
         }
-    }
-    else
-    {
-        wait(&status);
-        return (status);
-    }
-    return (0);
+}
+else
+{
+wait(&status);
+    return (status);
+}
+return (0);
 }
