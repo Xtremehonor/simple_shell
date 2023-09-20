@@ -96,8 +96,8 @@ return (200);
  *
  * Return: 0 on success.
  */
-int fork_and_execute(char **command_tokens, char **program_name, char **environment,
-char *user_input, int process_id, int new_test_checker)
+int fork_and_execute(char **command_tokens, char **program_name,
+char **environment,char *user_input, int process_id, int new_test_checker)
 {
 pid_t child;
 int status, i = 0;
@@ -113,9 +113,9 @@ return (builtin_functions[i](command_tokens));
 child = fork();
 if (child == 0)
 {
-if (execve(command_tokens[0], command_tokens, environment) == -1)
+    if (execve(command_tokens[0], command_tokens, environment) == -1)
 {
-    fprintf(stderr, format, program_name[0], process_id, command_tokens[0]);
+fprintf(stderr, format, program_name[0], process_id, command_tokens[0]);
 if (!new_test_checker)
 free(command_tokens[0]);
 free(command_tokens);
