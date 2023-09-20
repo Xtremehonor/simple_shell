@@ -1,30 +1,35 @@
-#include "shell.h"
-/**
- * _get_path - get variable PATH.
- * @env: enviromente local
- * Return: value of PATH.
- */
-
 char *_get_path(char **env)
 {
-	size_t index = 0, var = 0, count = 5;
-	char *path = NULL;
+    size_t env_index = 0, char_index = 0, path_length = 5;
+    char *path = NULL;
 
-	for (index = 0; _string_compare(env[index], "PATH=", 5); index++)
-		;
-	if (env[index] == NULL)
-		return (NULL);
+    /* Find the index of the PATH variable */
+    while (_strncmp(env[env_index], "PATH=", path_length))
+        env_index++;
 
-	for (count = 5; env[index][var]; var++, count++)
-		;
-	path = malloc(sizeof(char) * (count + 1));
+    /* If PATH is not found, return NULL */
+    if (env[env_index] == NULL)
+    {
+        return (NULL);
+    }
 
-	if (path == NULL)
-		return (NULL);
+    /* Calculate the length of the PATH string */
+    for (path_length = 5; env[env_index][char_index]; char_index++, path_length++)
+        ;
 
-	for (var = 5, count = 0; env[index][var]; var++, count++)
-		path[count] = env[index][var];
+    /* Allocate memory for the PATH string */
+    path = malloc(sizeof(char) * (path_length + 1));
 
-	path[count] = '\0';
-	return (path);
+    /* Check if memory allocation was successful */
+    if (path == NULL)
+    {
+        return (NULL);
+    }
+
+    /* Copy the PATH string to the allocated memory */
+    for (char_index = 5, path_length = 0; env[env_index][char_index]; char_index++, path_length++)
+        path[path_length] = env[env_index][char_index];
+
+    path[path_length] = '\0'; /* Add null terminator */
+    return (path);
 }
