@@ -1,5 +1,16 @@
 #include "shell.h"
 
+/**
+ * parse_path - Searches for the executable in the PATH environment.
+ * @command: The command to search for.
+ * @env: The environment variables.
+ *
+ * This function searches for the specified command within the directories
+ * listed in the PATH environment variable. If found, it updates the 'command'
+ * pointer with the full path to the executable.
+ *
+ * Return: 0 if found, -1 if not found.
+ */
 int parse_path(char **command, char **env)
 {
 char *token = NULL, *path_var = _get_path(env), *full_path = NULL;
