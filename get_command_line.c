@@ -1,22 +1,26 @@
 #include "shell.h"
+
 /**
- * _getline_command -  GEts inputs
- * Return: The input.
+ * get_command_line - Gets user input.
+ *
+ * Return: The input string.
  */
-
-char *_getline_command(void)
+char *get_command_line(void)
 {
-	char *lineptr = NULL;
-	size_t charter_user = 0;
+    /* Initialize variables */
+    char *user_input = NULL;
+    size_t input_size = 0;
 
-	if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, "$ ", 2);
+    /* Print shell prompt if STDIN is a terminal */
+    if (isatty(STDIN_FILENO))
+        write(STDOUT_FILENO, "$ ", 2);
 
-	if (getline(&lineptr, &charter_user, stdin) == -1)
-	{
-		free(lineptr);
-		return (NULL);
-	}
+    /* Read a line of input from the user */
+    if (getline(&user_input, &input_size, stdin) <= 0)
+    {
+        free(user_input); /* Clean up memory on error */
+        return (NULL);
+    }
 
-	return (lineptr);
+    return (user_input);
 }
