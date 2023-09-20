@@ -27,7 +27,8 @@ print_environment(envp);
 else
 {
 is_path = parse_path(&command_tokens[0], envp); /* Tokenize PATH variable */
-status = fork_and_execute(command_tokens, argv, envp, input_line, path_flag, is_path);
+status = fork_and_execute(command_tokens,
+argv, envp, input_line, path_flag, is_path);
 if (status == 200 || is_path == 0)
 free(command_tokens[0]);
 free(command_tokens); /* Free allocated memory */
