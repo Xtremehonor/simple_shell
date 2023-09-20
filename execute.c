@@ -7,8 +7,8 @@ int handle_ctrl_d(char **args);
 
 char *builtin_commands[] = {"cd", "help", "exit", "^D"};
 
-int (*builtin_functions[]) (char **) = {&change_directory, 
-                                        &display_help, &exit_shell, &handle_ctrl_d};
+int (*builtin_functions[]) (char **) = {&change_directory,
+  &display_help, &exit_shell, &handle_ctrl_d};
 
 /**
  * count_builtin_commands - Returns the number of built-in commands.
@@ -16,7 +16,7 @@ int (*builtin_functions[]) (char **) = {&change_directory,
  */
 int count_builtin_commands(void)
 {
-    return (sizeof(builtin_commands) / sizeof(char *));
+return (sizeof(builtin_commands) / sizeof(char *));
 }
 
 /**
@@ -26,10 +26,10 @@ int count_builtin_commands(void)
  */
 int change_directory(char **args)
 {
-    if (args[1] == NULL)
-    {
-        fprintf(stderr, "hsh: expected argument to \"cd\"\n");
-    }
+if (args[1] == NULL)
+{
+fprintf(stderr, "hsh: expected argument to \"cd\"\n");
+}
     else
     {
         if (chdir(args[1]) != 0)
