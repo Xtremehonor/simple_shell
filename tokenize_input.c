@@ -1,11 +1,11 @@
 #include "shell.h"
 /**
- * tokenize - tokenizes a string
+ * tokenize_input - tokenizes a string
  * @user_input: what the user inputed
  * Return: a ptr to arr of ptrs
  */
 
-char **tokenize(char *user_input)
+char **tokenize_input(char *user_input)
 {
     char **command_tokens = NULL;
     char *token = NULL;
