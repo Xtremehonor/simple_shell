@@ -10,6 +10,7 @@ int main(int argc, char **argv, char **envp)
 {
 int path_flag = 0, status = 0, is_path = 0;
 char *input_line = NULL, **command_tokens = NULL;
+(void)argc;
 while (1) /* Infinite loop for shell operation */
 {
 errno = 0;
