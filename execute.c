@@ -98,7 +98,7 @@ int fork_and_execute(char **command_tokens, char **program_name, char **environm
 {
     pid_t child;
     int status, i = 0;
-    char *format = "%s: %d: %s: not found\n";
+    char *format = "%s: %d: %s: command not found\n";
 
     if (command_tokens[0] == NULL)
         return (1);
