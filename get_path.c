@@ -1,3 +1,11 @@
+#include "shell.h"
+
+/**
+ * _get_path - Gets the value of the PATH environment variable.
+ * @env: The local environment.
+ *
+ * Return: The value of the PATH variable.
+ */
 char *_get_path(char **env)
 {
     size_t env_index = 0, char_index = 0, path_length = 5;
