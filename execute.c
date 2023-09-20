@@ -86,12 +86,13 @@ int handle_ctrl_d(char **args)
 
 /**
  * fork_and_execute - Creates a fork to execute a command.
- * @arg: Command and path values.
- * @av: Name of our program.
- * @env: Environment.
- * @lineptr: Command line for the user.
- * @np: Process ID.
- * @c: Checker for new test.
+ * @command_tokens: List of command tokens.
+ * @program_name: Name of the program.
+ * @environment: Environment variables.
+ * @user_input: User input string.
+ * @process_id: Process ID.
+ * @new_test_checker: Checker for new test.
+ *
  * Return: 0 on success.
  */
 int fork_and_execute(char **command_tokens, char **program_name, char **environment, char *user_input, int process_id, int new_test_checker)
