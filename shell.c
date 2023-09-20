@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * main - Main function for handling shell operations.
- * @argc: Argument count.
- * @argv: Argument vector.
- * @envp: Environment variables.
- *
- * Return: Exit status (0 on success).
- */
+* main - Main function for handling shell operations.
+* @argc: Argument count.
+* @argv: Argument vector.
+* @envp: Environment variables.
+*
+* Return: Exit status (0 on success).
+*/
 int main(int argc, char **argv, char **envp)
 {
 int path_flag = 0, status = 0, is_path = 0;
