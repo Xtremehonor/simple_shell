@@ -111,9 +111,9 @@ if (string_compare(command_tokens[0], builtin_commands[i]) == 0)
 return (builtin_functions[i](command_tokens));
 }
 child = fork();
-    if (child == 0)
+if (child == 0)
 {
-    if (execve(command_tokens[0], command_tokens, environment) == -1)
+if (execve(command_tokens[0], command_tokens, environment) == -1)
 {
 fprintf(stderr, format, program_name[0], process_id, command_tokens[0]);
 if (!new_test_checker)
