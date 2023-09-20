@@ -1,43 +1,55 @@
 #include "shell.h"
 
 /**
- * _get_path - Gets the value of the PATH environment variable.
- * @env: The local environment.
- *
- * Return: The value of the PATH variable.
+ * find_executable - Searches for the executable in the PATH environment.
+ * @command: The command to search for.
+ * @env: The environment variables.
+ * Return: 0 if found, -1 if not found.
  */
-char *_get_path(char **env)
+int parse_path(char **command, char **env)
 {
-size_t env_index = 0, char_index = 0, path_length = 5;
-    char *path = NULL;
+char *token = NULL, *path_var = NULL, *full_path = NULL;
+size_t command_length, path_length;
+struct stat st;
 
-/* Find the index of the PATH variable */
-while (_strncmp(env[env_index], "PATH=", path_length))
-    env_index++;
+if (stat(*command, &st) == 0)
+    return (-1);
 
-/* If PATH is not found, return NULL */
-if (env[env_index] == NULL)
+path_var = _get_path(env); /* Get the value of the "PATH" environment variable */
+
+if (!path_var)
+    return (-1);
+
+token = strtok(path_var, ":"); /* Tokenize the "PATH" value */
+command_length = _strlen(*command); /* Get the length of the command */
+
+while (token)
 {
-    return (NULL);
+    path_length = _strlen(token);
+    full_path = malloc(sizeof(char) * (path_length + command_length + 2));
+
+    if (!full_path)
+    {
+        free(path_var);
+        return (-1);
+    }
+
+    full_path = _strcpy(full_path, token);
+    _strcat(full_path, "/");
+    _strcat(full_path, *command);
+
+    if (stat(full_path, &st) == 0)
+    {
+        *command = full_path;
+        free(path_var);
+        return (0);
+    }
+
+    free(full_path);
+    token = strtok(NULL, ":");
 }
 
-/* Calculate the length of the PATH string */
-for (path_length = 5; env[env_index][char_index]; char_index++, path_length++)
-    ;
-
-/* Allocate memory for the PATH string */
-path = malloc(sizeof(char) * (path_length + 1));
-
-/* Check if memory allocation was successful */
-if (path == NULL)
-{
-    return (NULL);
-}
-
-/* Copy the PATH string to the allocated memory */
-for (char_index = 5, path_length = 0; env[env_index][char_index]; char_index++, path_length++)
-    path[path_length] = env[env_index][char_index];
-
-path[path_length] = '\0'; /* Add null terminator */
-return (path);
+token = '\0';
+free(path_var);
+return (-1);
 }
