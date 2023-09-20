@@ -30,14 +30,14 @@ if (args[1] == NULL)
 {
 fprintf(stderr, "hsh: expected argument to \"cd\"\n");
 }
-    else
-    {
-        if (chdir(args[1]) != 0)
-        {
-            perror("hsh");
-        }
-    }
-    return (1);
+else
+{
+if (chdir(args[1]) != 0)
+{
+perror("hsh");
+}
+}
+return (1);
 }
 
 /**
@@ -47,18 +47,18 @@ fprintf(stderr, "hsh: expected argument to \"cd\"\n");
  */
 int display_help(char **args)
 {
-    int i = 0;
+int i = 0;
 
-    printf("Getayawkal Wondimagegnehu\nIf you need assistance, +251 ...\n");
-    (void)args;
+printf("Getayawkal Wondimagegnehu\nIf you need assistance, +251 ...\n");
+(void)args;
 
-    while (i < count_builtin_commands())
-    {
-        printf("  %s\n", builtin_commands[i]);
-        i++;
-    }
+while (i < count_builtin_commands())
+{
+printf("  %s\n", builtin_commands[i]);
+i++;
+}
 
-    return (1);
+return (1);
 }
 
 /**
@@ -68,9 +68,9 @@ int display_help(char **args)
  */
 int exit_shell(char **args)
 {
-    (void)args;
-    free(args);
-    return (200);
+(void)args;
+free(args);
+return (200);
 }
 
 /**
@@ -80,9 +80,9 @@ int exit_shell(char **args)
  */
 int handle_ctrl_d(char **args)
 {
-    (void)args;
-    free(args);
-    return (200);
+(void)args;
+free(args);
+return (200);
 }
 
 /**
@@ -103,11 +103,11 @@ int status, i = 0;
 char *format = "%s: %d: %s: command not found\n";
 
 if (command_tokens[0] == NULL)
-    return (1);
+return (1);
 for (i = 0; i < count_builtin_commands(); i++)
 {
-    if (string_compare(command_tokens[0], builtin_commands[i]) == 0)
-    return (builtin_functions[i](command_tokens));
+if (string_compare(command_tokens[0], builtin_commands[i]) == 0)
+return (builtin_functions[i](command_tokens));
 }
 child = fork();
 if (child == 0)
@@ -115,17 +115,17 @@ if (child == 0)
 if (execve(command_tokens[0], command_tokens, environment) == -1)
 {
 fprintf(stderr, format, program_name[0], process_id, command_tokens[0]);
-    if (!new_test_checker)
-        free(command_tokens[0]);
-    free(command_tokens);
-    free(user_input);
-    exit(errno);
-        }
+if (!new_test_checker)
+    free(command_tokens[0]);
+free(command_tokens);
+free(user_input);
+exit(errno);
+}
 }
 else
 {
 wait(&status);
-    return (status);
+return (status);
 }
 return (0);
 }
