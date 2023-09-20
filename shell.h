@@ -27,7 +27,7 @@ char *_get_path(char **env);
 int parse_path(char **arg, char **env);
 char *get_command_line(void);
 void print_environment(char **env);
-char **tokenize_input(char *lineptr);
+char **tokenize(char *user_input);
 void _exit_command(char **args, char *lineptr, int _exit);
 int fork_and_execute(char **arg, char **av, char **env,
 char *lineptr, int np, int c);
