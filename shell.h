@@ -17,7 +17,7 @@ int display_help(char **args);
 extern char **environ;
 int exit_shell(char **args);   
 int string_compare(char *s1, char *s2);
-size_t _string_compare(char *s1, char *s2, size_t n);
+size_t _strncmp(char *s1, char *s2, size_t n);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
