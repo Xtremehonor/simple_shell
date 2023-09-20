@@ -35,7 +35,8 @@ return (NULL);
 }
 
 /* Copy the PATH string to the allocated memory */
-for (char_index = 5, path_length = 0; env[env_index][char_index]; char_index++, path_length++)
+for (char_index = 5, path_length = 0; env[env_index][char_index];
+char_index++, path_length++)
 path[path_length] = env[env_index][char_index];
 
 path[path_length] = '\0'; /* Add null terminator */
